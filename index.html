@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Sugesto - Food Discovery App</title>
+    <meta name="description" content="You've been invited to join Sugesto! Discover amazing food and restaurants near you.">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Join Sugesto - Food Discovery App">
+    <meta property="og:description" content="You've been invited to join Sugesto! Discover amazing food and restaurants near you.">
+    <meta property="og:image" content="https://duseca.github.io/sugesto-invite/assets/banner.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Join Sugesto - Food Discovery App">
+    <meta property="twitter:description" content="You've been invited to join Sugesto! Discover amazing food and restaurants near you.">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            background: linear-gradient(135deg, #FFB000 0%, #FFC837 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 500px;
+            width: 100%;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: #FFB000;
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        .app-name {
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .invite-badge {
+            background: linear-gradient(135deg, #FFB000 0%, #FFC837 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            display: inline-block;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(255, 176, 0, 0.3);
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+        }
+
+        .description {
+            font-size: 16px;
+            color: #666666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .invite-code-container {
+            background: #FBFBFB;
+            border: 2px dashed #FFB000;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .invite-code-label {
+            font-size: 12px;
+            color: #666666;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .invite-code {
+            font-size: 32px;
+            font-weight: bold;
+            color: #FFB000;
+            letter-spacing: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .features {
+            margin-bottom: 30px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .feature-icon {
+            background: #FFF8E6;
+            color: #FFB000;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 16px;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        .feature-text {
+            font-size: 15px;
+            color: #333333;
+        }
+
+        .cta-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            display: block;
+        }
+
+        .btn-primary {
+            background: #FFB000;
+            color: white;
+            box-shadow: 0 4px 12px rgba(255, 176, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: #FFA500;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(255, 176, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #FFB000;
+            border: 2px solid #FFB000;
+        }
+
+        .btn-secondary:hover {
+            background: #FFF8E6;
+        }
+
+        .footer {
+            padding: 20px 30px;
+            text-align: center;
+            background: #FAFAFA;
+            font-size: 13px;
+            color: #999999;
+        }
+
+        .error-message {
+            background: #FFE6E6;
+            color: #E40B0B;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #FFB000;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                border-radius: 0;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .app-name {
+                font-size: 28px;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .invite-code {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🍽️</div>
+            <div class="app-name">Sugesto</div>
+            <div class="tagline">Discover. Taste. Enjoy.</div>
+        </div>
+
+        <div class="content" id="content">
+            <div class="loading">
+                <div class="spinner"></div>
+                <div>Loading your invitation...</div>
+            </div>
+        </div>
+
+        <div class="footer">
+            © 2025 Sugesto. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        // Get invite code from URL parameter
+        function getInviteCode() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('ref');
+        }
+
+        // Validate invite code format
+        function isValidInviteCode(code) {
+            return code && /^[A-Z0-9]{8}$/.test(code);
+        }
+
+        // Generate deep link for the app
+        function generateDeepLink(inviteCode) {
+            return `sugesto://invite?ref=${inviteCode}`;
+        }
+
+        // Try to open the app
+        function openApp(inviteCode) {
+            const deepLink = generateDeepLink(inviteCode);
+            const androidPackage = 'com.sugesto.app'; // Replace with your actual package name
+            const iosAppId = ''; // Replace with your iOS App ID if available
+            
+            // Try to open deep link
+            window.location.href = deepLink;
+            
+            // Fallback to store after a delay
+            setTimeout(() => {
+                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
+                
+                if (/android/i.test(userAgent)) {
+                    // Android - Google Play Store
+                    window.location.href = `https://play.google.com/store/apps/details?id=${androidPackage}`;
+                } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                    // iOS - App Store
+                    if (iosAppId) {
+                        window.location.href = `https://apps.apple.com/app/id${iosAppId}`;
+                    } else {
+                        alert('iOS app coming soon!');
+                    }
+                } else {
+                    // Desktop or other - show message
+                    alert('Please open this link on your mobile device to install Sugesto!');
+                }
+            }, 1500);
+        }
+
+        // Copy invite code to clipboard
+        function copyInviteCode(code) {
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Invite code copied to clipboard!');
+            }).catch(() => {
+                alert('Failed to copy invite code');
+            });
+        }
+
+        // Render the invite page
+        function renderInvitePage(inviteCode) {
+            const content = document.getElementById('content');
+            
+            content.innerHTML = `
+                <div class="invite-badge">🎉 You're Invited!</div>
+                
+                <h1 class="title">Join Sugesto Today</h1>
+                
+                <p class="description">
+                    Your friend has invited you to discover amazing food and restaurants. 
+                    Download the app now and start your culinary journey!
+                </p>
+
+                <div class="invite-code-container">
+                    <div class="invite-code-label">Your Invite Code</div>
+                    <div class="invite-code">${inviteCode}</div>
+                </div>
+
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">🔍</div>
+                        <div class="feature-text">Discover nearby foods and restaurants</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">⭐</div>
+                        <div class="feature-text">Get personalized recommendations</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🎁</div>
+                        <div class="feature-text">Earn rewards by inviting friends</div>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary" onclick="event.preventDefault(); openApp('${inviteCode}')">
+                        Download Sugesto App
+                    </a>
+                    <a href="#" class="btn btn-secondary" onclick="event.preventDefault(); copyInviteCode('${inviteCode}')">
+                        Copy Invite Code
+                    </a>
+                </div>
+            `;
+        }
+
+        // Render error page
+        function renderErrorPage() {
+            const content = document.getElementById('content');
+            
+            content.innerHTML = `
+                <div class="error-message">
+                    Invalid or expired invite link
+                </div>
+                
+                <h1 class="title">Oops! Something went wrong</h1>
+                
+                <p class="description">
+                    The invite link you followed is invalid or has expired. 
+                    Please ask your friend to send you a new invite link.
+                </p>
+
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">🔍</div>
+                        <div class="feature-text">Discover nearby foods and restaurants</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">⭐</div>
+                        <div class="feature-text">Get personalized recommendations</div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🎁</div>
+                        <div class="feature-text">Earn rewards by inviting friends</div>
+                    </div>
+                </div>
+
+                <div class="cta-buttons">
+                    <a href="#" class="btn btn-primary" onclick="event.preventDefault(); openApp('')">
+                        Download Sugesto App
+                    </a>
+                </div>
+            `;
+        }
+
+        // Initialize page
+        function init() {
+            const inviteCode = getInviteCode();
+            
+            if (isValidInviteCode(inviteCode)) {
+                // Store invite code in localStorage for the app to retrieve
+                localStorage.setItem('sugesto_invite_code', inviteCode);
+                renderInvitePage(inviteCode);
+            } else {
+                renderErrorPage();
+            }
+        }
+
+        // Run when page loads
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+</html>
