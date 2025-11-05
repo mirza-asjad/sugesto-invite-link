@@ -21,18 +21,17 @@ This is the landing page for Sugesto app invite links, hosted on GitHub Pages.
    - Click **Save**
 
 3. **Wait for deployment** (usually takes 1-2 minutes)
-   - GitHub will provide you with a URL like: `https://duseca.github.io/sugesto_app/`
-   - Your invite links will be: `https://duseca.github.io/sugesto_app/?ref=INVITECODE`
+   - GitHub will provide you with a URL like: `https://mirza-asjad.github.io/sugesto-invite-link/`
+   - Your invite links will be: `https://mirza-asjad.github.io/sugesto-invite-link/?ref=INVITECODE`
 
-4. **Update the invite service**:
-   - Open `lib/service/invite_service.dart`
-   - Update the `baseUrl` in `generateInviteLink` method with your actual GitHub Pages URL:
+4. **Update the invite service** (Already Done ✅):
+   - The `lib/service/invite_service.dart` has been updated with:
      ```dart
-     const baseUrl = 'https://duseca.github.io/sugesto_app';
+     const baseUrl = 'https://mirza-asjad.github.io/sugesto-invite-link';
      ```
 
 5. **Test your invite link**:
-   - Visit: `https://duseca.github.io/sugesto_app/?ref=TEST1234`
+   - Visit: `https://mirza-asjad.github.io/sugesto-invite-link/?ref=TEST1234`
    - The page should display the invite code and app download options
 
 ## Custom Domain (Optional)
