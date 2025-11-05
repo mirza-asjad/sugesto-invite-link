@@ -183,13 +183,17 @@
             transition: all 0.3s ease;
             cursor: pointer;
             border: none;
-            display: block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         .btn-primary {
             background: #FFB000;
             color: white;
             box-shadow: 0 4px 12px rgba(255, 176, 0, 0.3);
+            font-size: 18px;
         }
 
         .btn-primary:hover {
@@ -206,6 +210,7 @@
 
         .btn-secondary:hover {
             background: #FFF8E6;
+            transform: translateY(-1px);
         }
 
         .footer {
@@ -310,34 +315,34 @@
             return `sugesto://invite?ref=${inviteCode}`;
         }
 
-        // Try to open the app
-        function openApp(inviteCode) {
+        // Open app directly (if installed)
+        function openInApp(inviteCode) {
             const deepLink = generateDeepLink(inviteCode);
+            // Store invite code for the app to retrieve
+            localStorage.setItem('sugesto_invite_code', inviteCode);
+            // Try to open the app
+            window.location.href = deepLink;
+            
+            // Show message after attempting to open
+            setTimeout(() => {
+                alert('If the app didn\'t open, please download it first using the buttons below.');
+            }, 1500);
+        }
+
+        // Download app and navigate to stores
+        function downloadApp(store) {
             const androidPackage = 'com.sugesto.app'; // Replace with your actual package name
             const iosAppId = ''; // Replace with your iOS App ID if available
             
-            // Try to open deep link
-            window.location.href = deepLink;
-            
-            // Fallback to store after a delay
-            setTimeout(() => {
-                const userAgent = navigator.userAgent || navigator.vendor || window.opera;
-                
-                if (/android/i.test(userAgent)) {
-                    // Android - Google Play Store
-                    window.location.href = `https://play.google.com/store/apps/details?id=${androidPackage}`;
-                } else if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                    // iOS - App Store
-                    if (iosAppId) {
-                        window.location.href = `https://apps.apple.com/app/id${iosAppId}`;
-                    } else {
-                        alert('iOS app coming soon!');
-                    }
+            if (store === 'android') {
+                window.location.href = `https://play.google.com/store/apps/details?id=${androidPackage}`;
+            } else if (store === 'ios') {
+                if (iosAppId) {
+                    window.location.href = `https://apps.apple.com/app/id${iosAppId}`;
                 } else {
-                    // Desktop or other - show message
-                    alert('Please open this link on your mobile device to install Sugesto!');
+                    alert('iOS app coming soon!');
                 }
-            }, 1500);
+            }
         }
 
         // Copy invite code to clipboard
@@ -384,11 +389,14 @@
                 </div>
 
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary" onclick="event.preventDefault(); openApp('${inviteCode}')">
-                        Download Sugesto App
+                    <a href="#" class="btn btn-primary" onclick="event.preventDefault(); openInApp('${inviteCode}')">
+                        🚀 Open in App
                     </a>
-                    <a href="#" class="btn btn-secondary" onclick="event.preventDefault(); copyInviteCode('${inviteCode}')">
-                        Copy Invite Code
+                    <a href="#" class="btn btn-secondary" onclick="event.preventDefault(); downloadApp('android')">
+                        📱 Download on Google Play
+                    </a>
+                    <a href="#" class="btn btn-secondary" onclick="event.preventDefault(); downloadApp('ios')">
+                        🍎 Download on App Store
                     </a>
                 </div>
             `;
@@ -426,8 +434,11 @@
                 </div>
 
                 <div class="cta-buttons">
-                    <a href="#" class="btn btn-primary" onclick="event.preventDefault(); openApp('')">
-                        Download Sugesto App
+                    <a href="#" class="btn btn-secondary" onclick="event.preventDefault(); downloadApp('android')">
+                        📱 Download on Google Play
+                    </a>
+                    <a href="#" class="btn btn-secondary" onclick="event.preventDefault(); downloadApp('ios')">
+                        🍎 Download on App Store
                     </a>
                 </div>
             `;
